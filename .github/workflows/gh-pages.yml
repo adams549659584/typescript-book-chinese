@@ -9,9 +9,14 @@ on:
   push:
     branches:
       - master
+  
+  watch:
+    types: [started]
 
 jobs:
   build-deploy:
+    if: github.event.repository.owner.id == github.event.sender.id
+    
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
